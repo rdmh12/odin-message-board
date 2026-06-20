@@ -2,4 +2,27 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+  font-family: sans-serif;
+}
+
+body {
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+}
+
+h1 {
+  text-align: center;
+}
+
+.message {
+  padding: 1em;
+  border: 1px solid #e0e0e0;
 }

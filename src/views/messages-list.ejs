@@ -1,0 +1,9 @@
+<div>
+  <a href="/new">New Message</a>
+</div>
+<% messages.forEach((message) => { %>
+<div class="message">
+  <div><%= message.text %></div>
+  <div><%= message.user %> | <%= message.created.toLocaleString() %></div>
+</div>
+<% }); %>
