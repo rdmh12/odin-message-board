@@ -5,6 +5,6 @@
 <% messages.forEach((message) => { %>
 <div class="message">
   <div><%= message.text %></div>
-  <div><%= message.user %> | <%= message.created.toLocaleString() %></div>
+  <div><%= message.user %> | <%= message.created %></div>
 </div>
 <% }); %>
