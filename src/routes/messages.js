@@ -4,6 +4,8 @@ import * as controller from "../controllers/messages.js";
 
 const router = Router();
 
-router.use("/", controller.getAll);
+router.get("/", controller.getAll);
+router.get("/new", controller.getNew);
+router.post("/new", controller.postNew);
 
 export default router;

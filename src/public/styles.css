@@ -1,3 +1,8 @@
+:root {
+  --border: 1px solid #e0e0e0;
+  --content-min-width: 500px;
+}
+
 * {
   box-sizing: border-box;
   padding: 0;
@@ -9,6 +14,7 @@ body {
   padding: 1em;
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 1em;
 }
 
@@ -16,13 +22,42 @@ main {
   display: flex;
   flex-direction: column;
   gap: 0.5em;
+  align-items: center;
 }
 
 h1 {
   text-align: center;
 }
 
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+  align-items: center;
+  min-width: var(--content-min-width);
+}
+
+textarea,
+input {
+  width: 100%;
+  border: var(--border);
+  padding: 0.5em;
+}
+
+textarea {
+  height: 10em;
+}
+
+button {
+  padding: 0.25em 0.4em;
+}
+
 .message {
   padding: 1em;
-  border: 1px solid #e0e0e0;
+  border: var(--border);
+  min-width: var(--content-min-width);
+}
+
+.error {
+  color: #fa003f;
 }
