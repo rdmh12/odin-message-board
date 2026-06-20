@@ -13,7 +13,6 @@ const messages = [
 
 export function getAll(_req, res) {
   res.render("index", {
-    title: "Messages",
     content: "messages-list",
     messages: messages,
   });
@@ -21,7 +20,6 @@ export function getAll(_req, res) {
 
 export function getNew(_req, res) {
   res.render("index", {
-    title: "New Message",
     content: "messages-new",
   });
 }
@@ -37,7 +35,6 @@ export function postNew(req, res) {
     res.redirect("/");
   } else {
     res.render("index", {
-      title: "New Message",
       content: "messages-new",
       error:
         author.length == 0
