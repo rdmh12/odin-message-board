@@ -1,6 +1,7 @@
 :root {
   --border: 1px solid #e0e0e0;
   --content-min-width: 500px;
+  --blue: #305cde;
 }
 
 * {
@@ -24,6 +25,7 @@ main {
   gap: 0.5em;
   align-items: center;
   max-width: 800px;
+  min-width: var(--content-min-width);
 }
 
 h1 {
@@ -43,22 +45,91 @@ input {
   width: 100%;
   border: var(--border);
   padding: 0.5em;
+  font-size: 1rem;
+}
+
+textarea:focus,
+input:focus {
+  border: 1px solid var(--blue);
+  outline: 0;
 }
 
 textarea {
   height: 10em;
+  min-width: var(--content-min-width);
 }
 
 button {
-  padding: 0.25em 0.4em;
+  margin-top: 1em;
+  padding: 0.8em 1.4em;
+  background-color: var(--blue);
+  color: #fff;
+  border: 0;
+  border-radius: 8px;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
 }
 
-.message {
+a,
+a:visited {
+  color: var(--blue);
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+input,
+textarea,
+.box {
+  width: 100%;
   padding: 1em;
   border: var(--border);
-  min-width: var(--content-min-width);
+  border-radius: 8px;
+  box-shadow: 5px 5px 5px #eee;
+}
+
+p {
+  white-space: pre-wrap;
+}
+
+.message-list-item {
+  display: flex;
+  gap: 1em;
+  align-items: center;
+}
+
+.message-list-item a:visited {
+  color: #a47dab;
+}
+
+.message-list-item-user {
+  width: 100px;
+  font-weight: bold;
+  text-align: right;
+}
+
+.message-list-item-text {
+  flex: 1;
+}
+
+.message-list-item-date {
+  font-size: 0.8rem;
+  color: #666;
+}
+
+.message-full {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
 }
 
 .error {
   color: #fa003f;
+}
+
+.subtle {
+  font-size: 0.8rem;
+  color: #666;
 }

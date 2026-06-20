@@ -1,10 +1,11 @@
-<h1>Messages</h1>
 <div>
   <a href="/new">New Message</a>
 </div>
 <% messages.forEach((message) => { %>
-<div class="message">
-  <div><%= message.text %></div>
-  <div><%= message.user %> | <%= message.created %> | <a href="/<%= message.id %>">Show</a></div>
+<div class="box message-list-item">
+  <div class="message-list-item-user"><%= message.user %>:</div>
+  <div class="message-list-item-text"><%= message.text %></div>
+  <div class="message-list-item-date"><%= message.created %></div>
+  <div><a href="/<%= message.id %>">Show</a></div>
 </div>
 <% }); %>
