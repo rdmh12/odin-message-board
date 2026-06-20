@@ -32,12 +32,12 @@ export function getAll(req, res) {
   });
 }
 
-export function getOne(req, res) {
+export function getOne(req, res, next) {
   const language = getRequestLanguage(req);
-  const index = req.params.id;
+  const index = Number.parseInt(req.params.id);
 
-  if (index < 0 || index >= messages.length) {
-    res.status(404).end();
+  if (Number.isNaN(index) || index < 0 || index >= messages.length) {
+    next("route");
     return;
   }
 

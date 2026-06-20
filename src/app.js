@@ -12,6 +12,10 @@ app.use(express.static(path.join(import.meta.dirname, "public")));
 app.use(express.urlencoded({ extended: true }));
 app.use("/", messagesRouter);
 
+app.use((_req, res) => {
+  res.status(404).render("index", { content: "404" });
+});
+
 const port = process.env.PORT ?? 3000;
 
 app.listen(port, (err) => {
