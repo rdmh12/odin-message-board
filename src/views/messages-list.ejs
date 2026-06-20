@@ -5,6 +5,6 @@
 <% messages.forEach((message) => { %>
 <div class="message">
   <div><%= message.text %></div>
-  <div><%= message.user %> | <%= message.created %></div>
+  <div><%= message.user %> | <%= message.created %> | <a href="/<%= message.id %>">Show</a></div>
 </div>
 <% }); %>

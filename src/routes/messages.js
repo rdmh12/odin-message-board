@@ -7,5 +7,6 @@ const router = Router();
 router.get("/", controller.getAll);
 router.get("/new", controller.getNew);
 router.post("/new", controller.postNew);
+router.get("/:id", controller.getOne);
 
 export default router;
