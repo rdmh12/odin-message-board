@@ -1,11 +1,19 @@
 <a href="/">View Messages</a>
-<% if (locals.error) { %>
+<% locals.errors && locals.errors.forEach((error) => { %>
 <div class="error"><%= error %></div>
-<% } %>
+<% }) %>
 <form method="post" action="/new">
   <label for="author">Author:</label>
-  <input name="author" id="author" type="text" value="<%= locals.author %>" required />
-  <label for="text">Text:</label>
-  <textarea name="text" id="text" required><%= locals.text %></textarea>
+  <input
+    name="author"
+    id="author"
+    type="text"
+    value="<%= message.author %>"
+    required
+  />
+  <label for="content">Text:</label>
+  <textarea name="content" id="content" required>
+<%= message.content %></textarea
+  >
   <button type="submit">Post</button>
 </form>

@@ -1,5 +1,5 @@
 <a href="/">View Messages</a>
 <div class="box message-full">
-  <div class="subtle">On <b><%= message.created %></b> user <b><%= message.user %></b> wrote:</div>
-  <p><%= message.text %></p>
+  <div class="subtle">On <b><%= message.created.toLocaleString(language) %></b> user <b><%= message.author %></b> wrote:</div>
+  <p><%= message.content %></p>
 </div>

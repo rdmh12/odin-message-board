@@ -1,86 +1,66 @@
-const messages = [
-  {
-    id: 0,
-    text: "Morbi ut felis vel felis accumsan volutpat. Donec aliquam ut arcu nec tincidunt. Nam id diam sed libero porta lacinia ac quis purus. Ut in sollicitudin arcu. Aliquam laoreet, nibh ut euismod maximus, est erat dictum odio, bibendum euismod metus turpis sit amet libero. Quisque iaculis tincidunt posuere. Mauris pretium rhoncus arcu nec ultrices. Cras rutrum volutpat tortor, id aliquet neque molestie sit amet. Vestibulum vel mi vitae arcu ultrices convallis ut nec leo.",
-    user: "User 1",
-    created: new Date(),
-  },
-  {
-    id: 1,
-    text: "Duis eget lectus massa. Nam dignissim nisi in maximus convallis. Vivamus quis lacinia ipsum, nec cursus dolor. Phasellus sagittis nisi lorem, sit amet iaculis odio tincidunt id. Proin nisi ipsum, dictum id elit sed, tristique suscipit tortor. Fusce sodales rutrum nibh id fermentum. Proin turpis sem, fringilla nec scelerisque sed, sodales vitae nisi.",
-    user: "User 2",
-    created: new Date(),
-  },
-];
+import * as db from "../db/messages.js";
 
-export function getAll(req, res) {
+export async function getAll(req, res) {
+  const messages = await db.getAll();
   const language = getRequestLanguage(req);
-  const maxMessageSize = 50;
 
   res.render("index", {
     content: "messages-list",
-    messages: messages
-      .toSorted((a, b) => b.created - a.created)
-      .map((message) => ({
-        ...message,
-        text:
-          message.text.length > maxMessageSize
-            ? message.text.substring(0, maxMessageSize) + "..."
-            : message.text,
-        created: message.created.toLocaleString(language),
-      })),
+    messages,
+    language,
+    maxMessageSize: 50,
   });
 }
 
-export function getOne(req, res, next) {
-  const language = getRequestLanguage(req);
-  const index = Number.parseInt(req.params.id);
+export async function getOne(req, res, next) {
+  const id = Number.parseInt(req.params.id);
 
-  if (Number.isNaN(index) || index < 0 || index >= messages.length) {
-    next("route");
-    return;
+  if (!Number.isNaN(id)) {
+    const messages = await db.getOne(id);
+
+    if (messages.length == 1) {
+      const language = getRequestLanguage(req);
+
+      res.render("index", {
+        content: "messages-show",
+        message: messages[0],
+        language: language,
+      });
+
+      return;
+    }
   }
 
-  const message = messages[index];
-
-  res.render("index", {
-    content: "messages-show",
-    message: {
-      ...message,
-      created: message.created.toLocaleString(language),
-    },
-  });
+  next("route");
 }
 
 export function getNew(_req, res) {
   res.render("index", {
     content: "messages-new",
+    message: { author: "", content: "" },
   });
 }
 
-export function postNew(req, res) {
+export async function postNew(req, res) {
   console.log(req.body);
 
   const author = req.body.author ? req.body.author.trim() : "";
-  const text = req.body.text ? req.body.text.trim() : "";
+  const content = req.body.content ? req.body.content.trim() : "";
+  const errors = [];
 
-  if (author.length > 0 && text.length > 0) {
-    messages.push({
-      id: messages.length,
-      text: text,
-      user: author,
-      created: new Date(),
-    });
+  if (author.length == 0) errors.push("Message author is empty");
+  if (author.length > 16)
+    errors.push("Message author is too long (max 16 characters)");
+  if (content.length == 0) errors.push("Message text is empty");
+
+  if (errors.length == 0) {
+    await db.insert(author, content, new Date());
     res.redirect("/");
   } else {
-    res.render("index", {
+    res.status(400).render("index", {
       content: "messages-new",
-      error:
-        author.length == 0
-          ? "Message author is empty"
-          : "Message text is empty",
-      author: author,
-      text: text,
+      errors,
+      message: { author, content },
     });
   }
 }

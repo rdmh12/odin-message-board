@@ -4,11 +4,13 @@
   "scripts": {
     "dev": "node --env-file=.env --watch src/app.js",
     "format": "prettier * -w -u --no-error-on-unmatched-pattern",
-    "lint": "eslint"
+    "lint": "eslint",
+    "populate-db": "node --env-file=.env src/db/populate.js"
   },
   "dependencies": {
     "ejs": "^6.0.1",
-    "express": "^5.2.1"
+    "express": "^5.2.1",
+    "pg": "^8.22.0"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
