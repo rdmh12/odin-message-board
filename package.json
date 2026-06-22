@@ -5,7 +5,8 @@
     "dev": "node --env-file=.env --watch src/app.js",
     "format": "prettier * -w -u --no-error-on-unmatched-pattern",
     "lint": "eslint",
-    "populate-db": "node --env-file=.env src/db/populate.js"
+    "populate-db": "node --env-file=.env src/db/populate.js",
+    "setup": "node src/db/setup.js"
   },
   "dependencies": {
     "ejs": "^6.0.1",
