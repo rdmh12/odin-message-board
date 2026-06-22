@@ -1,6 +1,6 @@
 <a href="/">View Messages</a>
 <% locals.errors && locals.errors.forEach((error) => { %>
-<div class="error"><%= error %></div>
+<div class="error"><%= error.msg %></div>
 <% }) %>
 <form method="post" action="/new">
   <label for="author">Author:</label>
