@@ -1,6 +1,6 @@
 :root {
   --border: 1px solid #e0e0e0;
-  --content-min-width: 500px;
+  --content-min-width: 320px;
   --blue: #305cde;
 }
 
@@ -24,7 +24,7 @@ main {
   flex-direction: column;
   gap: 0.5em;
   align-items: center;
-  max-width: 800px;
+  max-width: 1200px;
   min-width: var(--content-min-width);
 }
 
@@ -105,7 +105,7 @@ p {
 }
 
 .message-list-item-user {
-  width: 100px;
+  width: 175px;
   font-weight: bold;
   text-align: right;
 }
