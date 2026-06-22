@@ -4,9 +4,10 @@
 <% messages.forEach((message) => { %>
 <div class="box message-list-item">
   <div class="message-list-item-user"><%= message.author %>:</div>
-  <div class="message-list-item-text"></div>
-  <%= (message.content.length > maxMessageSize) ? message.content.substring(0,
-  maxMessageSize) + "..." : message.content %>
+  <div class="message-list-item-text">
+    <%= (message.content.length > maxMessageSize) ? message.content.substring(0,
+    maxMessageSize) + "..." : message.content %>
+  </div>
   <div class="message-list-item-date">
     <%= message.created.toLocaleString(language) %>
   </div>
